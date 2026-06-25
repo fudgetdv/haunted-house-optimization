@@ -12,10 +12,6 @@ import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js'
 // Debug
 //const gui = new GUI()
 
-
-
-
-
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
