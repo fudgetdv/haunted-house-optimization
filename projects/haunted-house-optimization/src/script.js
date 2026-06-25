@@ -118,7 +118,7 @@ doorColorTexture.colorSpace = THREE.SRGBColorSpace
 // Floor
 
 const floor = new THREE.Mesh(
-    new THREE.PlaneGeometry(20, 20, 100, 100),
+    new THREE.PlaneGeometry(40, 40, 200, 200),
     new THREE.MeshStandardMaterial({
         alphaMap: floorAlphaTexture,
         transparent: true,
@@ -238,9 +238,9 @@ const graveMaterial = new THREE.MeshStandardMaterial({
 const graves = new THREE.Group()
 scene.add(graves)
 
-for(let i = 0; i < 20; i++){
+for(let i = 0; i < 200; i++){
     const angle = Math.random() * Math.PI * 2
-    const radius = 3 + Math.random() * 4
+    const radius = 3 + Math.random() * 12
     const x = Math.sin(angle) * radius
     const z = Math.cos(angle) * radius
     const grave = new THREE.Mesh(graveGeometry, graveMaterial)
@@ -330,11 +330,11 @@ const perf = new ThreePerf({
     anchorY: 'bottom',       // or 'bottom'
     domElement: document.body,
     renderer: renderer,   // your THREE.WebGLRenderer instance
-     visible: false,    // hide the UI but still collect stats
-     memory: true,      // ← shows geometries / textures / shaders count
-     guiVisible: true,
-     showGraph: true,   // ← optional: shows the nice FPS/CPU/GPU graphs
-     enabled: true
+    visible: false,    // hide the UI but still collect stats
+    memory: true,      // ← shows geometries / textures / shaders count
+    guiVisible: true,
+    showGraph: false,   // ← optional: shows the nice FPS/CPU/GPU graphs
+    enabled: true
 })
 
 renderer.setSize(sizes.width, sizes.height)
@@ -412,8 +412,8 @@ const tick = () =>
 
     // Ghost
     const ghost1Angle = elapsedTime * 0.5;
-    ghost1.position.x = Math.cos(ghost1Angle) * 4
-    ghost1.position.z = Math.sin(ghost1Angle) * 4
+    ghost1.position.x = Math.cos(ghost1Angle) * 8
+    ghost1.position.z = Math.sin(ghost1Angle) * 8
     ghost1.position.y = Math.sin(ghost1Angle) * Math.sin(ghost1Angle * 2.34) * Math.sin(ghost1Angle * 3.45)
 
     const ghost2Angle = -elapsedTime * 0.38;

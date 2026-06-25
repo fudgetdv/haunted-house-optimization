@@ -1,19 +1,8 @@
 {
-  "name": "threejs-journey-exercise",
+  "name": "three-projects",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build"
-  },
-  "devDependencies": {
-    "three-perf": "^1.0.11",
-    "vite": "^6.2.2",
-    "vite-plugin-restart": "^0.4.2"
-  },
-  "dependencies": {
-    "lil-gui": "^0.20.0",
-    "three": "^0.174.0"
+    "build:all": "cd projects/haunted-house-optimization && npm install && npm run build && cd ../wall-shadow && npm install & npm run build"
   }
 }
