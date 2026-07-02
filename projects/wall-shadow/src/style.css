@@ -1,0 +1,38 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body
+{
+    overflow: hidden;
+}
+
+.webgl
+{
+    position: fixed;
+    inset: 0;
+    outline: none;
+}
+
+#replay
+{
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.25rem;
+    background: rgba(10, 10, 14, 0.75);
+    color: #e8e8ec;
+    font: inherit;
+    cursor: pointer;
+}
+
+#replay:hover
+{
+    background: rgba(20, 20, 28, 0.9);
+}
