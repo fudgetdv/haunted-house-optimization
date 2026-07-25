@@ -1,0 +1,5 @@
+export type { IVirtual, VirtualFactory } from './IVirtual'
+export { VirtualOutside, createVirtualOutside } from './VirtualOutside'
+export type { VirtualOutsideOptions } from './VirtualOutside'
+export { VirtualInside, createVirtualInside } from './VirtualInside'
+export type { VirtualInsideOptions } from './VirtualInside'

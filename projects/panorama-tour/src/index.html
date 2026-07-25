@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panorama Tour</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <p id="tour-hint" hidden>
+        Drag to look · Click a glowing spot to move · 1–4 for grid stops
+    </p>
+    <div id="transition-veil" aria-hidden="true"></div>
+    <nav id="stop-bar" aria-label="Tour stops"></nav>
+    <canvas class="webgl"></canvas>
+    <script type="module" src="./script.ts"></script>
+</body>
+</html>
