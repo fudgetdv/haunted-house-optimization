@@ -8,6 +8,14 @@
 </head>
 <body>
     <button id="replay" type="button">Replay</button>
+    <div id="tour-blocker" role="dialog" aria-modal="true" aria-labelledby="tour-title">
+        <div id="tour-panel">
+            <h1 id="tour-title">Virtual tour</h1>
+            <p class="tour-lead">Step into the scene. Look around freely and walk the floor.</p>
+            <p class="tour-hint">Click to enter · WASD / arrows move · mouse look · Esc exit</p>
+            <button id="tour-start" type="button">Enter tour</button>
+        </div>
+    </div>
     <canvas class="webgl"></canvas>
     <script type="module" src="./script.ts"></script>
 </body>

@@ -1,11 +1,17 @@
 import * as THREE from 'three'
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader.js'
 
-const PNG_URL = new URL('../assets/vampire_nosferatu_silhoutte.png', import.meta.url).href
-const SVG_URL = new URL('../assets/vampire_nosferatu_silhouette.svg', import.meta.url).href
+const PNG_URL = new URL('../../assets/vampire_nosferatu_silhoutte_A.png', import.meta.url).href
+const PNG_POSE_B_URL = new URL('../../assets/vampire_nosferatu_silhoutte_B.png', import.meta.url).href
+const SVG_URL = new URL('../../assets/vampire_nosferatu_silhouette.svg', import.meta.url).href
 
 const KNOWN_ASSETS: Record<string, string> = {
-    '../assets/vampire_nosferatu_silhoutte.png': PNG_URL,
+    '../../assets/vampire_nosferatu_silhoutte_A.png': PNG_URL,
+    '../../assets/vampire_nosferatu_silhoutte_B.png': PNG_POSE_B_URL,
+    '../../assets/vampire_nosferatu_silhouette.svg': SVG_URL,
+    // Relative paths as passed from the composition root (src/script.ts)
+    '../assets/vampire_nosferatu_silhoutte_A.png': PNG_URL,
+    '../assets/vampire_nosferatu_silhoutte_B.png': PNG_POSE_B_URL,
     '../assets/vampire_nosferatu_silhouette.svg': SVG_URL,
 }
 
@@ -22,6 +28,8 @@ export type SilhouetteUpdateParams = {
     phase?: number
     growth?: number
     maxGrowth?: number
+    /** Frame delta (seconds) — used by multi-pose / timed reveals. */
+    delta?: number
 }
 
 export type SilhouetteOptions = {
@@ -40,7 +48,7 @@ export type SilhouetteController = {
 
 const DEFAULT_OPTIONS = {
     source: 'png',
-    url: '../assets/vampire_nosferatu_silhoutte.png',
+    url: '../assets/vampire_nosferatu_silhoutte_A.png',
     scale: 1.2,
     height: 6,
     offset: { x: 0.5, y: 0, z: 0.01 },
@@ -137,7 +145,8 @@ function cleanPngTexture(image: HTMLImageElement | HTMLCanvasElement | ImageBitm
     return texture
 }
 
-async function buildFromPng(url: string, height: number)
+/** Load a cleaned PNG silhouette plane (shared by createSilhouette / VampirePoses). */
+export async function buildFromPng(url: string, height: number)
 {
     const textureLoader = new THREE.TextureLoader()
     const loadedTexture = await textureLoader.loadAsync(resolveAssetUrl('png', url))
@@ -149,6 +158,8 @@ async function buildFromPng(url: string, height: number)
 
     return new THREE.Mesh(geometry, material)
 }
+
+export { setOpacity as setSilhouetteOpacity, resolveAssetUrl, PNG_URL, PNG_POSE_B_URL }
 
 async function buildFromSvg(url: string, height: number)
 {

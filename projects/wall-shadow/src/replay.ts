@@ -2,7 +2,7 @@ import type { DirectionalLight, Mesh } from 'three'
 import { Vector3 } from 'three'
 import type { Timer } from 'three/examples/jsm/misc/Timer.js'
 import type { LightningController } from './lightning'
-import type { SilhouetteController } from './silhoutte'
+import type { SilhouetteController } from './meshes/silhouette'
 
 export type ReplayState = {
     phase: number

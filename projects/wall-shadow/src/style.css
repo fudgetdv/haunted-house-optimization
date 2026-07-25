@@ -22,7 +22,7 @@ body
     position: fixed;
     top: 1rem;
     right: 1rem;
-    z-index: 1;
+    z-index: 2;
     padding: 0.5rem 1rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 0.25rem;
@@ -35,4 +35,70 @@ body
 #replay:hover
 {
     background: rgba(20, 20, 28, 0.9);
+}
+
+/* Virtual tour enter / exit overlay */
+#tour-blocker
+{
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(6, 6, 12, 0.72);
+    backdrop-filter: blur(4px);
+}
+
+#tour-panel
+{
+    max-width: 22rem;
+    padding: 1.75rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.5rem;
+    background: rgba(12, 12, 18, 0.92);
+    color: #e8e8ec;
+    text-align: center;
+    font-family: system-ui, sans-serif;
+}
+
+#tour-panel h1
+{
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.75rem;
+}
+
+.tour-lead
+{
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: #c4c4cc;
+    margin-bottom: 0.75rem;
+}
+
+.tour-hint
+{
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: #8a8a96;
+    margin-bottom: 1.25rem;
+}
+
+#tour-start
+{
+    padding: 0.55rem 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 0.3rem;
+    background: rgba(220, 228, 255, 0.12);
+    color: #eef0ff;
+    font: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+#tour-start:hover
+{
+    background: rgba(220, 228, 255, 0.22);
 }

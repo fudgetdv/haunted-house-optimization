@@ -1,0 +1,17 @@
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+    root: 'src/',
+    base: process.env.NODE_ENV === 'production' ? '/ball-scene/' : '/',
+    server:
+    {
+        host: true,
+        open: !('SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env),
+    },
+    build:
+    {
+        outDir: '../../dist/ball-scene',
+        emptyOutDir: true,
+        sourcemap: true,
+    },
+})
