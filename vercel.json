@@ -2,6 +2,6 @@
   "buildCommand": "npm run build:all",
   "outputDirectory": "projects/dist",
   "redirects": [
-    { "source": "/", "destination": "/haunted-house-optimization/", "permanent": false }
+    { "source": "/", "destination": "/wall-shadow/", "permanent": false }
   ]
 }

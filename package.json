@@ -3,6 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "build:all": "cd projects/haunted-house-optimization && npm install && npm run build && cd ../wall-shadow && npm install && npm run build"
+    "build:all": "cd projects/haunted-house-optimization && npm install && npm run build && cd ../wall-shadow && npm install && npm run build && cd ../panorama-tour && npm install && npm run build"
   }
 }
