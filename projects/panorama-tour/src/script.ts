@@ -11,7 +11,7 @@ import { TOUR_STOPS, stopIndexById } from './tourStops'
  * ------------------------------------------------------------
  * • Drag to look
  * • Click hotspot → short fade, keep facing the travel direction
- * • Optional stop bar / keys 1–3
+ * • Optional stop bar / keys 1…N (N = TOUR_STOPS.length)
  * ============================================================
  */
 
@@ -206,14 +206,19 @@ const buildStopBar = () =>
     })
 }
 
-// Keys 1–4 jump to grid stops (r1c1, r1c2, r2c1, r2c2)
+// Keys 1…N jump to stop index (N = TOUR_STOPS.length, max 9)
 window.addEventListener('keydown', (event) =>
 {
-    const digit = event.code.match(/^Digit([1-4])$/)
-        ?? event.code.match(/^Numpad([1-4])$/)
-    if (digit)
+    const digit = event.code.match(/^Digit([1-9])$/)
+        ?? event.code.match(/^Numpad([1-9])$/)
+    if (!digit)
     {
-        void goToStop(Number(digit[1]) - 1, { fade: true })
+        return
+    }
+    const index = Number(digit[1]) - 1
+    if (index < TOUR_STOPS.length)
+    {
+        void goToStop(index, { fade: true })
     }
 })
 
@@ -266,6 +271,11 @@ Promise.all(
 
         if (hint instanceof HTMLElement)
         {
+            const n = TOUR_STOPS.length
+            hint.textContent =
+                n <= 1
+                    ? 'Drag to look · Click a glowing spot to move'
+                    : `Drag to look · Click a glowing spot to move · 1–${n} for stops`
             hint.hidden = false
         }
     })

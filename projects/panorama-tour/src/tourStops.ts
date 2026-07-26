@@ -1,19 +1,15 @@
 import type { HotspotDef } from './hotspots'
 
 /**
- * Tour stops — backyard grid (equirectangular 360s, VirtualOutside).
+ * Tour stops — equirect / cylindrical panos (VirtualOutside).
  *
- * Files on disk: backyard_pano_r{row}c{col}.jpg
- * Capture assumption: every shot starts facing the same way (north = forward = -Z).
- *
- * Grid (row × col):
- *   r1c1  —  r1c2
- *   r2c1  —  r2c2
- *
- * Compass vectors (north-aligned capture) — author in this space:
+ * Compass (north-aligned capture):
  *   north [0,0,-1]  south [0,0,1]  east [1,0,0]  west [-1,0,0]
- * HotspotController mirrors X to match the flipped inside-view texture.
+ * HotspotController mirrors X/Z for inside-view texture.
+ *
+ * Active tour = TOUR_STOPS (script loads this array only).
  */
+
 export type TourStop = {
     id: string
     label: string
@@ -21,7 +17,8 @@ export type TourStop = {
     hotspots: HotspotDef[]
 }
 
-export const TOUR_STOPS: TourStop[] = [
+/** 2×2 backyard grid (kept for swapping active tour). */
+export const TOUR_STOPS_BACKYARD: TourStop[] = [
     {
         id: 'r1c1',
         label: 'R1 C1',
@@ -100,5 +97,40 @@ export const TOUR_STOPS: TourStop[] = [
     },
 ]
 
+/**
+ * Active tour: 1×2 row (r0c0 — r0c1).
+ * Files on disk: nusc_pano_r0c0.jpg, panorama_pano_r0c1.jpg
+ */
+export const TOUR_STOPS: TourStop[] = [
+    {
+        id: 'r0c0',
+        label: 'R0 C0',
+        textureUrl: './panorama/nusc_pano_r0c0.jpg',
+        hotspots: [
+            {
+                targetStopId: 'r0c1',
+                label: 'East → R0 C1',
+                direction: [1, 0, 0],
+                distance: 6,
+            },
+        ],
+    },
+    {
+        id: 'r0c1',
+        label: 'R0 C1',
+        // On disk: panorama_pano_r0c1.jpg (not backyard_pano_r0c1)
+        textureUrl: './panorama/panorama_pano_r0c1.jpg',
+        hotspots: [
+            {
+                targetStopId: 'r0c0',
+                label: 'West → R0 C0',
+                direction: [-1, 0, 0],
+                distance: 6,
+            },
+        ],
+    },
+]
+
+/** Resolve hotspot targetStopId → index in the active TOUR_STOPS array. */
 export const stopIndexById = (id: string): number =>
     TOUR_STOPS.findIndex((stop) => stop.id === id)
